@@ -20,8 +20,6 @@ body{
     justify-content:center;
     align-items:center;
 }
-
-/* Container */
 .container{
     display:flex;
     width:900px;
@@ -31,8 +29,6 @@ body{
     overflow:hidden;
     box-shadow:0 10px 30px rgba(0,0,0,0.2);
 }
-
-/* Left Panel */
 .left{
     width:40%;
     background:linear-gradient(135deg,#1e4fa3,#2d6cdf);
@@ -63,8 +59,6 @@ body{
     cursor:pointer;
     font-weight:bold;
 }
-
-/* Right Panel */
 .right{
     width:60%;
     padding:40px;
@@ -74,7 +68,6 @@ body{
     margin-bottom:20px;
 }
 
-/* Inputs */
 .input-group{
     margin-bottom:15px;
 }
@@ -91,7 +84,6 @@ body{
     outline:none;
 }
 
-/* Buttons */
 .buttons{
     margin-top:20px;
 }
@@ -111,7 +103,6 @@ body{
     cursor:pointer;
 }
 
-/* Main Page */
 .mainPage{
     display:none;
     text-align:center;
@@ -141,8 +132,7 @@ body{
     border-radius:10px;
     box-shadow:0 5px 15px rgba(0,0,0,0.2);
 }
-
-/* Responsive */
+    
 @media(max-width:768px){
     .container{
         flex-direction:column;
@@ -160,7 +150,6 @@ body{
 
 <body>
 
-<!-- Login Signup Page -->
 <div class="container" id="authPage">
 
     <div class="left">
@@ -171,7 +160,6 @@ body{
 
     <div class="right">
 
-        <!-- Signup -->
         <div id="signupForm">
             <h2>Create your account</h2>
 
@@ -196,7 +184,7 @@ body{
             </div>
         </div>
 
-        <!-- Login -->
+    
         <div id="loginForm" style="display:none;">
             <h2>Sign In</h2>
 
@@ -220,7 +208,7 @@ body{
 
 </div>
 
-<!-- Main Website -->
+
 <div class="mainPage" id="mainPage">
 
     <div class="navbar">
