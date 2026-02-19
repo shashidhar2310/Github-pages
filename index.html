@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BlueFlame Login</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, sans-serif;
+}
+
+body{
+    background:#f0f0f0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* Container */
+.container{
+    display:flex;
+    width:900px;
+    height:500px;
+    background:white;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+/* Left Panel */
+.left{
+    width:40%;
+    background:linear-gradient(135deg,#1e4fa3,#2d6cdf);
+    color:white;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:30px;
+}
+
+.left h2{
+    margin-bottom:20px;
+}
+
+.left p{
+    font-size:14px;
+    margin-bottom:20px;
+}
+
+.left button{
+    padding:10px 20px;
+    border:none;
+    background:white;
+    color:#2d6cdf;
+    border-radius:20px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+/* Right Panel */
+.right{
+    width:60%;
+    padding:40px;
+}
+
+.right h2{
+    margin-bottom:20px;
+}
+
+/* Inputs */
+.input-group{
+    margin-bottom:15px;
+}
+
+.input-group label{
+    font-size:14px;
+}
+
+.input-group input{
+    width:100%;
+    padding:10px;
+    border:none;
+    border-bottom:2px solid #ccc;
+    outline:none;
+}
+
+/* Buttons */
+.buttons{
+    margin-top:20px;
+}
+
+.signup-btn{
+    padding:10px 20px;
+    border:1px solid black;
+    background:white;
+    cursor:pointer;
+}
+
+.signin-btn{
+    padding:10px 20px;
+    border:none;
+    background:#2d6cdf;
+    color:white;
+    cursor:pointer;
+}
+
+/* Main Page */
+.mainPage{
+    display:none;
+    text-align:center;
+}
+
+.navbar{
+    background:#2d6cdf;
+    color:white;
+    padding:15px;
+    display:flex;
+    justify-content:space-between;
+}
+
+.logout{
+    background:red;
+    color:white;
+    border:none;
+    padding:5px 10px;
+    cursor:pointer;
+}
+
+.card{
+    margin:40px auto;
+    padding:20px;
+    width:300px;
+    background:white;
+    border-radius:10px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Responsive */
+@media(max-width:768px){
+    .container{
+        flex-direction:column;
+        height:auto;
+        width:90%;
+    }
+
+    .left, .right{
+        width:100%;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- Login Signup Page -->
+<div class="container" id="authPage">
+
+    <div class="left">
+        <h2>Hello, Welcome!</h2>
+        <p>Create your account and explore</p>
+        <button onclick="showLogin()">SIGN IN</button>
+    </div>
+
+    <div class="right">
+
+        <!-- Signup -->
+        <div id="signupForm">
+            <h2>Create your account</h2>
+
+            <div class="input-group">
+                <label>Name</label>
+                <input type="text" id="name">
+            </div>
+
+            <div class="input-group">
+                <label>Email</label>
+                <input type="email" id="email">
+            </div>
+
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" id="password">
+            </div>
+
+            <div class="buttons">
+                <button class="signup-btn" onclick="signup()">Sign Up</button>
+                <button class="signin-btn" onclick="showLogin()">Sign In</button>
+            </div>
+        </div>
+
+        <!-- Login -->
+        <div id="loginForm" style="display:none;">
+            <h2>Sign In</h2>
+
+            <div class="input-group">
+                <label>Email</label>
+                <input type="email" id="loginEmail">
+            </div>
+
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" id="loginPassword">
+            </div>
+
+            <div class="buttons">
+                <button class="signin-btn" onclick="login()">Login</button>
+                <button class="signup-btn" onclick="showSignup()">Sign Up</button>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Main Website -->
+<div class="mainPage" id="mainPage">
+
+    <div class="navbar">
+        <h3>My Website</h3>
+        <button class="logout" onclick="logout()">Logout</button>
+    </div>
+
+    <h1>Welcome 🎉</h1>
+
+    <div class="card">
+        <h3>User Profile</h3>
+        <p id="userInfo"></p>
+    </div>
+
+</div>
+
+<script>
+
+function showLogin(){
+    document.getElementById("signupForm").style.display="none";
+    document.getElementById("loginForm").style.display="block";
+}
+
+function showSignup(){
+    document.getElementById("signupForm").style.display="block";
+    document.getElementById("loginForm").style.display="none";
+}
+
+function signup(){
+    let name=document.getElementById("name").value;
+    let email=document.getElementById("email").value;
+    let password=document.getElementById("password").value;
+
+    localStorage.setItem("name",name);
+    localStorage.setItem("email",email);
+    localStorage.setItem("password",password);
+
+    alert("Signup Successful!");
+    showLogin();
+}
+
+function login(){
+    let email=document.getElementById("loginEmail").value;
+    let password=document.getElementById("loginPassword").value;
+
+    let storedEmail=localStorage.getItem("email");
+    let storedPassword=localStorage.getItem("password");
+    let name=localStorage.getItem("name");
+
+    if(email===storedEmail && password===storedPassword){
+        document.getElementById("authPage").style.display="none";
+        document.getElementById("mainPage").style.display="block";
+
+        document.getElementById("userInfo").innerText="Welcome "+name;
+    }
+    else{
+        alert("Invalid Login");
+    }
+}
+
+function logout(){
+    document.getElementById("mainPage").style.display="none";
+    document.getElementById("authPage").style.display="flex";
+}
+
+</script>
+
+</body>
+</html>
